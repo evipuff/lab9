@@ -60,7 +60,6 @@ class Customer extends BaseModel
         return $full_name;
     }
 
-    // Assuming you have getters for first_name and last_name.
     public function getFirstName()
     {
         return $this->first_name;

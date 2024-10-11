@@ -21,11 +21,11 @@ $db_username = $_ENV['DB_USERNAME'];
 $db_password = $_ENV['DB_PASSWORD'];
 
 if ($_SERVER['SERVER_NAME'] == 'localhost') {
-    $db_host = 'localhost';  // Local MySQL server
-    $db_port = '3306';       // Default MySQL port
-    $db_name = 'northwind';  // Change this if using a different local database
-    $db_username = 'root';   // Default username for local MySQL
-    $db_password = '';       // Leave empty if there’s no password for your local MySQL
+    $db_host = 'localhost';  
+    $db_port = '3306';       
+    $db_name = 'northwind';  
+    $db_username = 'root';   
+    $db_password = '';       
 }
 
 $db = new DatabaseConnection(
