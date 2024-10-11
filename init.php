@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\DatabaseConnection;
+use Dotenv\Dotenv;
 
 // Initialize Templating Engine
 Mustache_Autoloader::register();
@@ -8,7 +9,7 @@ $mustache = new Mustache_Engine(array(
     'loader' => new Mustache_Loader_FilesystemLoader(dirname(__FILE__).'/views')
 ));
 
-$dotenv = Dotenv\Dotenv::createMutable(__DIR__);
+$dotenv = Dotenv::createMutable(__DIR__);
 $dotenv->load();
 
 // Initialize Database Connection
@@ -18,6 +19,14 @@ $db_port = $_ENV['DB_PORT'];
 $db_name = $_ENV['DB_DATABASE'];
 $db_username = $_ENV['DB_USERNAME'];
 $db_password = $_ENV['DB_PASSWORD'];
+
+if ($_SERVER['SERVER_NAME'] == 'localhost') {
+    $db_host = 'localhost';  // Local MySQL server
+    $db_port = '3306';       // Default MySQL port
+    $db_name = 'northwind';  // Change this if using a different local database
+    $db_username = 'root';   // Default username for local MySQL
+    $db_password = '';       // Leave empty if there’s no password for your local MySQL
+}
 
 $db = new DatabaseConnection(
     $db_type,
